@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import Body from "../components/body";
+import Login from "./login";
 import * as req from "../util/webutil"; 
 
 export default function Home() {
   const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState(items); // Assuming you have items state
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [loggedin, setLoogedin] = useState(false)
 
   const handleSearch = (searchTerm) => {
     // Filter items based on the search term
@@ -14,6 +16,10 @@ export default function Home() {
     );
     setFilteredItems(filtered);
   };
+
+  const handleLogin = () => { 
+    setLoogedin(true)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,10 +35,13 @@ export default function Home() {
     fetchData();
   }, []); 
 
-  return (
+  return loggedin ? (
     <div className="home">
       <Header onSearch={handleSearch} />
       <Body items={filteredItems} />
     </div>
+  ) : (
+      <Login login={handleLogin}/>
   );
+
 }

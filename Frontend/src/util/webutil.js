@@ -4,7 +4,8 @@ import axios from "axios";
 export const getAllItems = async () => {
   try {
     const response = await axios.get(
-      "https://kurale.onrender.com/api/get/items",
+      // "https://kurale.onrender.com/api/get/items",
+      "http://localhost:3001/api/get/items",
       {
         headers: {
           "Content-Type": "application/json",
