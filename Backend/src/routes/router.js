@@ -9,7 +9,7 @@ router.get("/api/get/items", itemControl.getAllItems);
 router.post("/api/create/item", itemControl.createItem);
 
 //users
-router.get("/api/get/users", userControl.getAllUsers);
+router.get("/api/get/user", userControl.getUser);
 router.post("/api/create/user", userControl.createUser);
 
 module.exports = router 

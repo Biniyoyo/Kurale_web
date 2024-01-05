@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Modal, Button, Row, Col, Image, Badge } from "react-bootstrap";
 import { BiListUl, BiCart, BiEdit, BiLogOut } from "react-icons/bi"; // Import Bootstrap icons
 import EditProfile from "../components/editProfile";
+import { useAuth } from "../context/authcontext";
 
 const Profile = ({ showProfile, onClose }) => {
+  const { user, logout } = useAuth();
   const [showEditProfile, setShowEditProfile] = useState(false);
 
   const handleEditProfileClick = () => {
@@ -15,9 +17,7 @@ const Profile = ({ showProfile, onClose }) => {
   };
 
   const handleLogout = () => {
-    // Implement your logout logic here
-    // For demonstration purposes, close the profile popup
-    onClose();
+    logout()
   };
 
   return (
@@ -34,7 +34,7 @@ const Profile = ({ showProfile, onClose }) => {
               roundedCircle
               style={{ width: "80px", height: "80px" }}
             />
-            <p className="mt-2">Your Name</p>
+            <p className="mt-2">{user.name}</p>
           </Col>
         </Row>
         <Row className="mb-3">

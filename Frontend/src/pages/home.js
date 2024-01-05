@@ -3,11 +3,13 @@ import Header from "../components/header";
 import Body from "../components/body";
 import Login from "./login";
 import * as req from "../util/webutil"; 
+import { useAuth } from "../context/authcontext";
 
 export default function Home() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
   const [loggedin, setLoogedin] = useState(false)
+  const { user } = useAuth();
 
   const handleSearch = (searchTerm) => {
     // Filter items based on the search term
@@ -27,7 +29,7 @@ export default function Home() {
         const itemsData = await req.getAllItems();
         setItems(itemsData);
         setFilteredItems(itemsData)
-      } catch (error) {
+      } catch (error) { 
         console.error("Error while fetching items:", error);
       }
     };
@@ -35,13 +37,13 @@ export default function Home() {
     fetchData();
   }, []); 
 
-  return loggedin ? (
+  return user ? (
     <div className="home">
       <Header onSearch={handleSearch} />
       <Body items={filteredItems} />
     </div>
   ) : (
-      <Login login={handleLogin}/>
+      <Login logintemp={handleLogin}/>
   );
 
 }

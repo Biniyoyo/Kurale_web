@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Register from "./register";
+import { useAuth } from "../context/authcontext";
 import {
   MDBBtn,
   MDBContainer,
@@ -11,21 +12,25 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 
-const Login = ({ login }) => {
+const Login = ({ logintemp }) => {
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [registerbtn, setRegisterbtn] = useState(false)
+  const [password, setPassword] = useState("");
+  const [registerbtn, setRegisterbtn] = useState(false);
 
   const handleLogin = () => {
-    login();
-    console.log("Logging in with:", { username, password });
+    logintemp();
+    var email = username
+    login({ email, password });
   };
-    
-    const handleRegister = () => {
-        setRegisterbtn(!registerbtn)
-      console.log("Navigating to Register...");
-    };
-   return registerbtn ? <Register/> : 
+
+  const handleRegister = () => {
+    setRegisterbtn(!registerbtn);
+    console.log("Navigating to Register...");
+  };
+  return registerbtn ? (
+    <Register />
+  ) : (
     <MDBContainer fluid className="p-4">
       <MDBRow className="justify-content-center">
         <MDBCol md="6" className="text-center mb-4">
@@ -92,6 +97,7 @@ const Login = ({ login }) => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+  );
 };
 
 export default Login;

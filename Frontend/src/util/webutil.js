@@ -60,3 +60,31 @@ export const handleAddUser = async (newUser) => {
     throw error; 
   }
 };
+
+// Function to get a user
+
+export const getUser = async (userInfo) => {
+  try {
+    const response = await axios.get("http://localhost:3001/api/get/user", {
+      params: userInfo,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      const { status, data } = error.response;
+
+      if (status === 401) {
+        throw new Error("Invalid password");
+      } else if (status === 404) {
+        throw new Error("User not found");
+      } else {
+        console.error(`Server error: ${status}`, data);
+        throw new Error("Server error");
+      }
+    } 
+  }
+};
