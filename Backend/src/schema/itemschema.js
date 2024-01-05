@@ -6,7 +6,7 @@ const itemSchema_ = new mongoose.Schema({
   description: { type: String, required: false },
   price: { type: Number, required: false },
   location: { type: String, required: false },
-  imageURL: { type: String, required: false },
+  category: { type: String, required: false },
 });
 
 const itemSchema = mongoose.model("item", itemSchema_)
