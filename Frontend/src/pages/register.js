@@ -15,6 +15,36 @@ const Register = () => {
     more: "",
   });
   const [error, setError] = useState("");
+  const countriesList = [
+  'China',
+  'India',
+  'United States',
+  'Indonesia',
+  'Pakistan',
+  'Brazil',
+  'Nigeria',
+  'Bangladesh',
+  'Russia',
+  'Mexico',
+  'Japan',
+  'Ethiopia',
+  'Philippines',
+  'Egypt',
+  'Vietnam',
+  'DR Congo',
+  'Turkey',
+  'Iran',
+  'Germany',
+  'Thailand',
+];
+
+
+  const handleCountryChange = (e) => {
+    setNewAddress({
+      ...newAddress,
+      country: e.target.value,
+    });
+  };
 
   const handleRegister = async () => {
     // Check if any field is empty
@@ -45,15 +75,6 @@ const Register = () => {
       return;
     }
 
-    // Perform registration logic
-    console.log("Registering with:", {
-      firstName,
-      lastName,
-      email,
-      password,
-      address: newAddress,
-    });
-
     const newUser = {
       name: `${firstName} ${lastName}`,
       address: `${newAddress.country} ${newAddress.state} ${newAddress.city} ${newAddress.more}`,
@@ -70,8 +91,6 @@ const Register = () => {
   };
 
    const handleLogin = () => {
-     // Redirect to login page
-     // Replace the following line with the logic to navigate to the login page
      window.location.href = "/login";
    };
 
@@ -178,17 +197,21 @@ const Register = () => {
                 <Col xs="9">
                   <Row>
                     <Col>
-                      <Form.Control
-                        type="text"
-                        placeholder="Country"
-                        value={newAddress.country}
-                        onChange={(e) =>
-                          setNewAddress({
-                            ...newAddress,
-                            country: e.target.value,
-                          })
-                        }
-                      />
+                      <Form.Group controlId="formCountry">
+                        <Form.Select
+                          value={newAddress.country}
+                          onChange={handleCountryChange}
+                        >
+                          <option value="" disabled>
+                            Country
+                          </option>
+                          {countriesList.map((country) => (
+                            <option key={country} value={country}>
+                              {country}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </Form.Group>
                     </Col>
                     <Col>
                       <Form.Control
