@@ -25,7 +25,7 @@ const Login = ({ login }) => {
         setRegisterbtn(!registerbtn)
       console.log("Navigating to Register...");
     };
-   return registerbtn ? <Register register={handleRegister} /> : 
+   return registerbtn ? <Register/> : 
     <MDBContainer fluid className="p-4">
       <MDBRow className="justify-content-center">
         <MDBCol md="6" className="text-center mb-4">

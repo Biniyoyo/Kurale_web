@@ -39,3 +39,24 @@ export const handleAddItem = async (newItem) => {
     throw error; 
   }
 };
+
+// Function to add a new user
+export const handleAddUser = async (newUser) => {
+  try {
+    const response = await axios.post(
+      // "https://kurale.onrender.com/api/create/user",
+      "http://localhost:3001/api/create/user",
+      newUser,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error while adding user:", error);
+    throw error; 
+  }
+};

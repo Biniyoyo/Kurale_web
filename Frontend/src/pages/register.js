@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
+import { handleAddUser } from "../util/webutil";
 
-const Register = ({ register }) => {
+const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Register = ({ register }) => {
   });
   const [error, setError] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // Check if any field is empty
     if (
       !firstName ||
@@ -45,7 +46,6 @@ const Register = ({ register }) => {
     }
 
     // Perform registration logic
-    register();
     console.log("Registering with:", {
       firstName,
       lastName,
@@ -53,6 +53,20 @@ const Register = ({ register }) => {
       password,
       address: newAddress,
     });
+
+    const newUser = {
+      name: `${firstName} ${lastName}`,
+      address: `${newAddress.country} ${newAddress.state} ${newAddress.city} ${newAddress.more}`,
+      email,
+      password,
+    };
+    try {
+      const addedUser = await handleAddUser(newUser);
+      console.log("User added successfully");
+      handleLogin()
+    } catch (error) {
+      console.error("Error adding user:", error);
+    }
   };
 
    const handleLogin = () => {
