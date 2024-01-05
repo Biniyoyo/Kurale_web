@@ -83,7 +83,9 @@ const Register = () => {
     };
     try {
       const addedUser = await handleAddUser(newUser);
-      console.log("User added successfully");
+      if (!addedUser) {
+        console.log("")
+      }
       handleLogin()
     } catch (error) {
       console.error("Error adding user:", error);

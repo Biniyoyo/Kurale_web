@@ -8,7 +8,6 @@ import { useAuth } from "../context/authcontext";
 export default function Home() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
-  const [loggedin, setLoogedin] = useState(false)
   const { user } = useAuth();
 
   const handleSearch = (searchTerm) => {
@@ -18,10 +17,6 @@ export default function Home() {
     );
     setFilteredItems(filtered);
   };
-
-  const handleLogin = () => { 
-    setLoogedin(true)
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +38,7 @@ export default function Home() {
       <Body items={filteredItems} />
     </div>
   ) : (
-      <Login logintemp={handleLogin}/>
+      <Login/>
   );
 
 }

@@ -12,14 +12,13 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 
-const Login = ({ logintemp }) => {
+const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [registerbtn, setRegisterbtn] = useState(false);
 
   const handleLogin = () => {
-    logintemp();
     var email = username
     login({ email, password });
   };
