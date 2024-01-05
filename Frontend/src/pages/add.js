@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import categories from "../data/category";
+import Login from "./login";
+import { useAuth } from "../context/authcontext";
 
 const Add = ({ showAdd, onClose, onAdd }) => {
+  const { user } = useAuth();
   const [itemDescription, setItemDescription] = useState("");
   const [selectedItemCategory, setSelectedItemCategory] = useState("");
   const [itemImages, setItemImages] = useState([]);
@@ -123,7 +126,7 @@ const Add = ({ showAdd, onClose, onAdd }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  );
+  )
 };
 
 export default Add;

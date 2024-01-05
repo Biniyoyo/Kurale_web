@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     // Remove the user data from cookies
     cookies.remove("user", { path: "/" });
-
     setUser(null);
   };
 

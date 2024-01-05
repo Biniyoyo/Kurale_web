@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Row, Col, Image, Badge } from "react-bootstrap";
 import { BiListUl, BiCart, BiEdit, BiLogOut } from "react-icons/bi"; // Import Bootstrap icons
 import EditProfile from "../components/editProfile";
+import Login from "./login";
 import { useAuth } from "../context/authcontext";
 
 const Profile = ({ showProfile, onClose }) => {
@@ -34,7 +35,7 @@ const Profile = ({ showProfile, onClose }) => {
               roundedCircle
               style={{ width: "80px", height: "80px" }}
             />
-            <p className="mt-2">{user.name}</p>
+            <p className="mt-2">{user?user.name:""}</p>
           </Col>
         </Row>
         <Row className="mb-3">
@@ -79,7 +80,7 @@ const Profile = ({ showProfile, onClose }) => {
         onClose={handleCloseEditProfile}
       />
     </Modal>
-  );
+  )
 };
 
 export default Profile;

@@ -12,16 +12,21 @@ import Add from "../pages/add";
 import Profile from "../pages/profile";
 import categories from "../data/category";
 import { useAuth } from "../context/authcontext";
+import { FaSignInAlt } from "react-icons/fa";
 
-const Header = ({ onSearch }) => {
+const Header = ({ onSearch, pub }) => {
   const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilter, setShowFilter] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [header, setHeader] = useState(true)
 
 
   const handleProfileButtonClick = () => {
+    if (!user) { 
+      pub()
+    }
     setShowProfile(true);
   };
 
@@ -34,6 +39,9 @@ const Header = ({ onSearch }) => {
   };
 
   const handleAddButtonClick = () => {
+    if (!user) {
+      pub();
+    }
     setShowAdd(!showAdd);
   };
 
@@ -101,7 +109,9 @@ const Header = ({ onSearch }) => {
           </div>
           <div className="col-md-2 d-flex align-items-center">
             <FaMapMarkerAlt className="mr-5" style={{ color: "white" }} />
-            <span style={{ color: "white" }}>{ user.address}</span>
+            <span style={{ color: "white" }}>
+              {user ? user.address : "Location"}
+            </span>
           </div>
 
           <div className="col-md-1">
@@ -142,7 +152,7 @@ const Header = ({ onSearch }) => {
               type="button"
               onClick={handleProfileButtonClick}
             >
-              <FaUser />
+              {user ? <FaUser /> : <FaSignInAlt />}
             </button>
             {showProfile && (
               <Profile

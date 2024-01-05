@@ -6,6 +6,7 @@ import * as req from "../util/webutil";
 import { useAuth } from "../context/authcontext";
 
 export default function Home() {
+  const [pub, setPub] = useState(true)
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
   const { user } = useAuth();
@@ -17,6 +18,10 @@ export default function Home() {
     );
     setFilteredItems(filtered);
   };
+
+  const handlePub = () => { 
+    setPub(false)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,13 +37,11 @@ export default function Home() {
     fetchData();
   }, []); 
 
-  return user ? (
+  return (user || pub) ? (
     <div className="home">
-      <Header onSearch={handleSearch} />
-      <Body items={filteredItems} />
+      <Header onSearch={handleSearch} pub={handlePub} />
+      <Body items={filteredItems} pub={handlePub} />
     </div>
-  ) : (
-      <Login/>
-  );
+  ):<Login/>
 
 }
