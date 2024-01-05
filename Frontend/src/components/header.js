@@ -11,12 +11,15 @@ import Filter from "./filter";
 import Add from "../pages/add";
 import Profile from "../pages/profile";
 import categories from "../data/category";
+import { useAuth } from "../context/authcontext";
 
 const Header = ({ onSearch }) => {
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilter, setShowFilter] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+
 
   const handleProfileButtonClick = () => {
     setShowProfile(true);
@@ -98,7 +101,7 @@ const Header = ({ onSearch }) => {
           </div>
           <div className="col-md-2 d-flex align-items-center">
             <FaMapMarkerAlt className="mr-5" style={{ color: "white" }} />
-            <span style={{ color: "white" }}>Location Label</span>
+            <span style={{ color: "white" }}>{ user.address}</span>
           </div>
 
           <div className="col-md-1">

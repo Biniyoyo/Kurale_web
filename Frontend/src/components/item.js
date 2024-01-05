@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const ItemCard = ({ itemName, description, price, location, imageURL }) => {
+const ItemCard = ({ itemName, description, price, location, imageURL}) => {
   const [imageLoadError, setImageLoadError] = useState(false);
   const defaultImageURL = "/demo.avif";
 
