@@ -10,10 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://Kurale:Ethiopia@cluster0.uyzji0o.mongodb.net/?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true, ssl: true }
-);
+mongoose.connect("mongodb+srv://Kurale:Ethiopia@cluster0.uyzji0o.mongodb.net/?retryWrites=true&w=majority");
 
 app.get("/", (req, res) => {
   res.send("Server is running!");

@@ -23,15 +23,7 @@ const Body = ({ items }) => {
     <div className="container mt-4">
       <div className="row" style={{ cursor: "pointer" }}>
         {items.map((item) => (
-          // <ItemCard
-          //   key={item.id}
-          //   itemName={item.name}
-          //   description={item.description}
-          //   price={item.price}
-          //   location={item.location}
-          //   imageURL={item.imageURL}
-          // />
-          <div className="col-md-4 mb-4" onClick={() => setSelectedItem(item)}>
+          <div className="col-md-4 mb-4" key={item._id} onClick={() => setSelectedItem(item)}>
             <div className="card">
               <img
                 src={imageLoadError ? defaultImageURL[0] : item.imageURL}
