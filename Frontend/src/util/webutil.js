@@ -4,8 +4,8 @@ import axios from "axios";
 export const getAllItems = async () => {
   try {
     const response = await axios.get(
-      "https://kurale.onrender.com/api/get/items",
-      // "http://localhost:3001/api/get/items",
+      // "https://kurale.onrender.com/api/get/items",
+      "http://localhost:3001/api/get/items",
       {
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +24,8 @@ export const getAllItems = async () => {
 export const handleAddItem = async (newItem) => {
   try {
     const response = await axios.post(
-      "https://kurale.onrender.com/api/create/item",
+      // "https://kurale.onrender.com/api/create/item",
+      "http://localhost:3001/api/create/item",
       newItem,
       {
         headers: {
@@ -44,8 +45,8 @@ export const handleAddItem = async (newItem) => {
 export const handleAddUser = async (newUser) => {
   try {
     const response = await axios.post(
-      "https://kurale.onrender.com/api/create/user",
-      // "http://localhost:3001/api/create/user",
+      // "https://kurale.onrender.com/api/create/user",
+      "http://localhost:3001/api/create/user",
       newUser,
       {
         headers: {
@@ -66,8 +67,8 @@ export const handleAddUser = async (newUser) => {
 export const getUser = async (userInfo) => {
   try {
     const response = await axios.get(
-      "https://kurale.onrender.com/api/get/user",
-      // "http://localhost:3001/api/get/user",
+      // "https://kurale.onrender.com/api/get/user",
+      "http://localhost:3001/api/get/user",
       {
         params: userInfo,
         headers: {
