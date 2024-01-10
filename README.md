@@ -4,11 +4,11 @@
 
 ## Deploying
     
-    Frontend: https://kurale-front.onrender.com
+    Frontend: https://biniyoyo.github.io/Kurale_web/
     Backend:  https://kurale.onrender.com
     Database: Mongodb-atlas
 
-    Link for app: https://kurale-front.onrender.com
+    Link for app: https://biniyoyo.github.io/Kurale_web/
 
 ```
 Kurale
