@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { handleAddUser } from "../util/webutil";
+import Login from "./login";
 
 const Register = () => {
+  const [registed, setRegistered] = useState(false)
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -93,10 +95,10 @@ const Register = () => {
   };
 
    const handleLogin = () => {
-     window.location.href = "/login";
+     setRegistered(true)
    };
 
-  return (
+  return !registed ? (
     <Container fluid className="p-0">
       <Row className="justify-content-center">
         <Col md="6" className="text-center m-4">
@@ -276,7 +278,7 @@ const Register = () => {
         </Col>
       </Row>
     </Container>
-  );
+  ): <Login/>
 };
 
 export default Register;

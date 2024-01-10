@@ -8,6 +8,7 @@ const cookies = new Cookies();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Check for user data in cookies on initial load
@@ -20,25 +21,28 @@ export const AuthProvider = ({ children }) => {
   const login = async (userData) => {
     try {
       const res = await getUser(userData);
-      setUser(res.user);
 
-      // Set the user data in cookies
-      cookies.set("user", res.user, { path: "/" });
-
-      console.log(res.user);
+      if (res.user) {
+        setUser(res.user);
+        cookies.set("user", res.user, { path: "/" });
+        setError(null); // Clear any previous errors
+        console.log(res.user);
+      } else {
+        setError("Incorrect username or password.");
+      }
     } catch (error) {
       console.error("Error during login:", error.message);
+      setError("Incorrect username or password!");
     }
   };
 
   const logout = () => {
-    // Remove the user data from cookies
     cookies.remove("user", { path: "/" });
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, error, setError }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,7 +6,7 @@ import {
   FaPlus,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import Filter from "./filter";
 import Add from "../pages/add";
 import Profile from "../pages/profile";
@@ -20,7 +20,6 @@ const Header = ({ onSearch, pub }) => {
   const [showFilter, setShowFilter] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [header, setHeader] = useState(true)
 
 
   const handleProfileButtonClick = () => {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Register from "./register";
 import { useAuth } from "../context/authcontext";
+import { Button} from "react-bootstrap";
 import {
   MDBBtn,
   MDBContainer,
@@ -13,20 +14,32 @@ import {
 } from "mdb-react-ui-kit";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, error,setError } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [registerbtn, setRegisterbtn] = useState(false);
 
-  const handleLogin = () => {
-    var email = username
-    login({ email, password });
+  const handleLogin = async () => {
+    setError(null);
+
+    if (!username.trim() || !password.trim()) {
+      setError("Please fill in both username and password.");
+      return;
+    }
+
+    try {
+      const email = username;
+      await login({ email, password });
+    } catch (error) {
+      setError("Incorrect username or password.");
+    }
   };
 
   const handleRegister = () => {
     setRegisterbtn(!registerbtn);
     console.log("Navigating to Register...");
   };
+
   return registerbtn ? (
     <Register />
   ) : (
@@ -73,6 +86,7 @@ const Login = () => {
                   />
                 </MDBCol>
               </MDBRow>
+              {error && <div className="alert alert-danger">{error}</div>}
               <div className="d-flex justify-content-between mb-4">
                 <MDBCheckbox
                   name="flexCheck"
@@ -82,13 +96,22 @@ const Login = () => {
                 />
                 <a href="!#">Forgot password?</a>
               </div>
-              <MDBBtn variant="primary" block onClick={handleLogin}>
+              <Button variant="primary" block onClick={handleLogin}>
                 Login
-              </MDBBtn>
+              </Button>
               <p className="small fw-bold mt-2 pt-1 mb-2">
                 Don't have an account?{" "}
                 <a href="#!" className="link-danger" onClick={handleRegister}>
                   Register
+                </a>
+              </p>
+              <p className="small fw-bold mt-2 pt-1 mb-2">
+                <a
+                  href="#!"
+                  className="link"
+                  onClick={() => window.location.reload()}
+                >
+                  Continue as Guest
                 </a>
               </p>
             </MDBCardBody>
