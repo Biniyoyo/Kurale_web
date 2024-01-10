@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Kurale_web/static/css/main.b1d7ec7b.css",
+    "main.js": "/Kurale_web/static/js/main.43387de9.js",
+    "static/js/787.f31be143.chunk.js": "/Kurale_web/static/js/787.f31be143.chunk.js",
+    "index.html": "/Kurale_web/index.html",
+    "main.b1d7ec7b.css.map": "/Kurale_web/static/css/main.b1d7ec7b.css.map",
+    "main.43387de9.js.map": "/Kurale_web/static/js/main.43387de9.js.map",
+    "787.f31be143.chunk.js.map": "/Kurale_web/static/js/787.f31be143.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1d7ec7b.css",
+    "static/js/main.43387de9.js"
+  ]
+}
