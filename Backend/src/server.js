@@ -20,7 +20,11 @@ app.use(itemRouter);
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "http://172.25.52.48:3000",
+      "https://kurale.onrender.com",
+    ],
     credentials: true,
   })
 );

@@ -11,10 +11,6 @@ const Body = ({ items }) => {
   const handleImageError = () => {
     setImageLoadError(true);
   };
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-  };
-
   const close = (item) => {
     setSelectedItem(null);
   };

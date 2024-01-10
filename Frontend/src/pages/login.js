@@ -3,7 +3,6 @@ import Register from "./register";
 import { useAuth } from "../context/authcontext";
 import { Button} from "react-bootstrap";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
